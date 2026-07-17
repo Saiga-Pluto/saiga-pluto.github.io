@@ -3,11 +3,264 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>えりだよー</title>
+    <title>愛梨だよー</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --pink: #ff2f92;
+        --cyan: #00d5ff;
+        --yellow: #ffe34d;
+        --green: #5dff7c;
+        --purple: #8f4dff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        animation: backgroundPanic 3.5s steps(1, end) infinite;
+        background:
+          radial-gradient(circle at 20% 20%, var(--yellow), transparent 18%),
+          radial-gradient(circle at 80% 30%, var(--cyan), transparent 16%),
+          radial-gradient(circle at 30% 80%, var(--green), transparent 18%),
+          linear-gradient(135deg, #fff 0 20%, #ffd8ec 20% 40%, #d8f7ff 40% 60%, #fff7ad 60% 80%, #e9ddff 80%);
+        color: #141414;
+        font-family: "Arial Black", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+        margin: 0;
+        min-width: 320px;
+        overflow: hidden;
+      }
+
+      main {
+        height: 100%;
+        position: relative;
+      }
+
+      .center-burst {
+        animation: spinPop 1.6s ease-in-out infinite alternate;
+        color: #fff;
+        font-size: clamp(48px, 12vw, 150px);
+        font-weight: 900;
+        left: 50%;
+        letter-spacing: 0;
+        line-height: 1;
+        position: absolute;
+        text-align: center;
+        text-shadow:
+          5px 5px 0 #111,
+          -5px -5px 0 var(--pink),
+          8px -8px 0 var(--cyan),
+          -8px 8px 0 var(--yellow);
+        top: 50%;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        z-index: 3;
+      }
+
+      .ticker {
+        animation: tickerMove 7s linear infinite;
+        background: #111;
+        color: var(--yellow);
+        font-size: clamp(24px, 5vw, 56px);
+        font-weight: 900;
+        left: 0;
+        line-height: 1;
+        padding: 10px 0;
+        position: absolute;
+        top: 24px;
+        white-space: nowrap;
+        width: max-content;
+        z-index: 4;
+      }
+
+      .ticker.bottom {
+        animation-direction: reverse;
+        bottom: 28px;
+        top: auto;
+      }
+
+      .noise {
+        animation: blink 450ms steps(1, end) infinite;
+        inset: 0;
+        pointer-events: none;
+        position: absolute;
+        z-index: 2;
+      }
+
+      .noise::before,
+      .noise::after {
+        content: "愛梨だよー 愛梨だよー 愛梨だよー 愛梨だよー 愛梨だよー";
+        color: rgba(20, 20, 20, 0.14);
+        font-size: clamp(36px, 8vw, 96px);
+        font-weight: 900;
+        left: -10%;
+        position: absolute;
+        top: 18%;
+        transform: rotate(-14deg);
+        white-space: nowrap;
+      }
+
+      .noise::after {
+        color: rgba(255, 47, 146, 0.2);
+        top: 68%;
+        transform: rotate(13deg);
+      }
+
+      .floater {
+        align-items: center;
+        animation:
+          bounce var(--duration) linear infinite,
+          rotateMad var(--spin) linear infinite,
+          colorFlip 1.4s steps(1, end) infinite;
+        background: var(--bg);
+        border: 4px solid #111;
+        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.32);
+        color: #111;
+        display: flex;
+        font-size: var(--size);
+        font-weight: 900;
+        height: var(--box);
+        justify-content: center;
+        left: var(--x);
+        line-height: 1;
+        position: absolute;
+        text-align: center;
+        top: var(--y);
+        transform: translate(-50%, -50%);
+        width: var(--box);
+        z-index: 5;
+      }
+
+      .floater:nth-child(odd) {
+        border-radius: 50%;
+      }
+
+      .floater:nth-child(3n) {
+        border-radius: 0;
+      }
+
+      .floater:nth-child(4n) {
+        transform-origin: 20% 80%;
+      }
+
+      @keyframes backgroundPanic {
+        0% {
+          filter: hue-rotate(0deg) saturate(1.25);
+        }
+        25% {
+          filter: hue-rotate(70deg) saturate(1.5);
+        }
+        50% {
+          filter: hue-rotate(180deg) saturate(1.8);
+        }
+        75% {
+          filter: hue-rotate(280deg) saturate(1.45);
+        }
+      }
+
+      @keyframes spinPop {
+        from {
+          transform: translate(-50%, -50%) rotate(-7deg) scale(0.9);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(7deg) scale(1.12);
+        }
+      }
+
+      @keyframes tickerMove {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 0.35;
+        }
+        50% {
+          opacity: 0.9;
+        }
+      }
+
+      @keyframes bounce {
+        0% {
+          translate: 0 0;
+        }
+        20% {
+          translate: 22vw -12vh;
+        }
+        40% {
+          translate: -18vw 18vh;
+        }
+        60% {
+          translate: 25vw 24vh;
+        }
+        80% {
+          translate: -20vw -18vh;
+        }
+        100% {
+          translate: 0 0;
+        }
+      }
+
+      @keyframes rotateMad {
+        to {
+          rotate: 1turn;
+        }
+      }
+
+      @keyframes colorFlip {
+        0% {
+          background: var(--pink);
+        }
+        25% {
+          background: var(--cyan);
+        }
+        50% {
+          background: var(--yellow);
+        }
+        75% {
+          background: var(--green);
+        }
+      }
+    </style>
   </head>
   <body>
-    <main>
-      <h1>えりだよー</h1>
+    <main aria-label="愛梨だよーが動き回るページ">
+      <div class="ticker">愛梨だよー　愛梨だよー　愛梨だよー　愛梨だよー　愛梨だよー　愛梨だよー　愛梨だよー　愛梨だよー　</div>
+      <div class="ticker bottom">愛梨だよー　愛梨だよー　愛梨だよー　愛梨だよー　愛梨だよー　愛梨だよー　愛梨だよー　愛梨だよー　</div>
+      <div class="noise"></div>
+      <h1 class="center-burst">愛梨だよー</h1>
     </main>
+    <script>
+      const main = document.querySelector('main');
+      const colors = ['#ff2f92', '#00d5ff', '#ffe34d', '#5dff7c', '#8f4dff', '#ff7a00'];
+
+      for (let index = 0; index < 22; index += 1) {
+        const item = document.createElement('div');
+        const size = 70 + (index % 5) * 20;
+
+        item.className = 'floater';
+        item.textContent = '愛梨だよー';
+        item.style.setProperty('--x', `${8 + (index * 17) % 86}%`);
+        item.style.setProperty('--y', `${10 + (index * 23) % 82}%`);
+        item.style.setProperty('--box', `${size}px`);
+        item.style.setProperty('--size', `${Math.max(18, size / 4.2)}px`);
+        item.style.setProperty('--duration', `${3.4 + (index % 7) * 0.35}s`);
+        item.style.setProperty('--spin', `${1.6 + (index % 6) * 0.22}s`);
+        item.style.setProperty('--bg', colors[index % colors.length]);
+        main.appendChild(item);
+      }
+    </script>
   </body>
 </html>
